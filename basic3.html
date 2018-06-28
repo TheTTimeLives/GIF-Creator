@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>My awful Giphy app</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="basic3.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+</head>
+
+<body class = "bg">
+
+    <div class="container ">
+        <div class="row">
+                    <div class = "col-sm-1">
+                    </div>
+                    <div class = "col-sm-10 center ">
+                                <h1>
+                                    AMAZING GIF GENERATOR
+                                </h1>
+                    </div>
+                    <div class = "col-sm-1">
+                    </div>
+                </div>
+            <div class="row">
+                    <div class = "col-sm-1">
+                    </div>
+                    <div class = "col-sm-10 center bg2 ">
+                                <form >
+                                        <input class="badform" id = "test" type="text">
+                                    </form> 
+                                <button id="gif" data-state="animating">Type in the field, then click this button to generate your GIF Button!</button>
+                                <div id="images" data-animating=></div>
+                                <div class="buttonholder">
+                                    </div>
+                    </div>
+                    <div class = "col-sm-1">
+                    </div>
+                </div>
+        <div class="row">
+                <div class = "col-sm-1">
+                </div>
+                <div class = "col-sm-10 center bg3">
+                    
+                                <img class = "bg2" id="id1">
+                                <img class = "bg2" id="id2">
+                                <img class = "bg2" id="id3">
+                                <img class = "bg2" id="id4">
+                                <img class = "bg2" id="id5">
+                                <img class = "bg2" id="id6">
+                                <img class = "bg2" id="id7">
+                                <img class = "bg2" id="id8">
+                                <img class = "bg2" id="id9">
+                                <img class = "bg2" id="id10">
+                            
+                </div>
+                <div class = "col-sm-1">
+                </div>
+        </div> 
+        <div class="row">
+                <div class = "col-sm-1">
+                </div>
+                <div class = "col-sm-10 center">                      
+                </div>
+                <div class = "col-sm-1">
+                </div>
+        </div>    
+    </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    var input = $('#test').val();
+    var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=iUXqgroGJsPyEnnJUsrURmmYORErEMFU&tag=" + input;
+    var imageArray = [];
+    var count = 0;
+
+  $("#gif").click(function(){
+      input = $('#test').val();
+    //   queryURL = "https://api.giphy.com/v1/gifs/random?api_key=iUXqgroGJsPyEnnJUsrURmmYORErEMFU&tag=" + input;
+      console.log(queryURL);
+
+      var newbutton = $('<button>'+ input + '</button>');
+      newbutton.attr("id","newButton");
+      newbutton.attr("value",input);
+      newbutton.attr("class","button");
+      $('.buttonholder').append(newbutton);
+
+      
+  })
+    
+    
+
+    function getGif() {
+
+      console.log("click registered");
+
+      input = $(this).val();
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=iUXqgroGJsPyEnnJUsrURmmYORErEMFU&tag=" + input;
+      var queryURL = "https://api.giphy.com/v1/gifs/random?api_key=iUXqgroGJsPyEnnJUsrURmmYORErEMFU&tag=" + input;
+
+    //   http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5
+      console.log(queryURL);
+
+      for (var i = 0; i < 10; i++) {
+
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+          .then(function (response) {
+
+            console.log(queryURL);
+            var imageUrl = response.data.image_original_url;
+            var imagestill = response.data.images.original_still.url;
+            count++;
+            
+            
+            var catImage = $("#id" + count);
+            var catRating = $('<div>');
+            catImage.attr("src", response.data.image_original_url);
+            catImage.attr("alt", "cat image");
+            catImage.attr("data-state", "animating");
+            catImage.attr("value",count);
+            console.log(count); 
+            catRating.html('response.data.rating'); 
+            console.log(response.data.rating)    ;     
+            
+            
+            
+
+          });
+
+      }
+
+      count = 0;
+
+      function controlanimate () {
+              console.log("click recognized");
+              var state = $("img").attr("data-state");
+
+              if (state === "animating") {
+                console.log("animation identified");
+                //if the data state is currently animating, which it will be by default, switch it to still, if it is not animating, switch it to animate
+                $(this).attr("src", response.data.images.original_still.url);
+                $(this).attr("data-state", "still");
+              }
+              else {
+                console.log("still identified");
+                $(this).attr("src", response.data.image_original_url);
+                $(this).attr("data-state", "animating");
+              }
+
+              
+            }
+
+    
+    }
+
+    
+
+    
+
+     
+     $(document).on("click", "#newButton", getGif);
+     $(document).on("click", "#id1", controlanimate);
+     $(document).on("click", "#id2", controlanimate);
+     $(document).on("click", "#id3", controlanimate);
+     $(document).on("click", "#id4", controlanimate);
+     $(document).on("click", "#id5", controlanimate);
+     $(document).on("click", "#id6", controlanimate);
+     $(document).on("click", "#id7", controlanimate);
+     $(document).on("click", "#id8", controlanimate);
+     $(document).on("click", "#id9", controlanimate);
+     $(document).on("click", "#id10", controlanimate);
+     
+    
+  </script>
+</body>
+
+</html>

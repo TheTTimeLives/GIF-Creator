@@ -1,0 +1,67 @@
+h1{
+    color:cadetblue;
+    background-color: white;
+    margin-top: 3%;
+    margin-bottom: 8%;
+    font-size:50px;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.center{
+    text-align: center;
+}
+
+img{
+    
+    height:15%;
+    width:40%;
+    margin: 20px;
+    
+}
+
+.buttonholder{
+    margin: 3%;
+    margin-bottom: 5%
+    
+    
+    
+}
+
+.button{
+    width:40%;
+    height: 60px;
+    margin: 20px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#gif{
+    margin: 2%;
+    border:5px solid #021a40;
+    border-color: lightblue;
+    position:relative;
+    top: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.badform{
+    margin:2%;
+    margin-top: 8%;
+    height:60px;
+    width:80%;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg{
+    background-image: url(Elegant_Background-18.jpg);
+}
+
+.bg2{
+    background-image: url(Elegant_Background-7.jpg);
+    border:5px solid #021a40;
+    border-color: lightblue;
+}
+
